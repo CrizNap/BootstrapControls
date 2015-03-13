@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace Adminer {
-    
+    using Twitter.Web.Controls;
     
     public partial class Dashboard {
         

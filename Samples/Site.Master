@@ -5,8 +5,8 @@
 <head id="Head1" runat="server">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="/content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery-1.11.2.min.js"></script>
+    <script src="~/content/js/bootstrap.min.js"></script>
      <!-- Bootstrap -->
     <link href="/content/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <asp:ContentPlaceHolder ID="head" runat="server">
