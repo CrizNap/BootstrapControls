@@ -77,6 +77,7 @@ namespace Twitter.Web.Controls
             if (this.Parent.Parent != null && this.Parent.Parent.GetType() == typeof(NavBar))
             {
                 this.AddCssClass("nav");
+                this.AddCssClass("navbar-nav");
             }
             else
             {
@@ -86,7 +87,7 @@ namespace Twitter.Web.Controls
                 writer.AddAttribute("aria-labelledby", "dropdownMenu");
             }
 
-            if (this.RightToLeft == true) this.AddCssClass("pull-right");
+            if (this.RightToLeft == true) this.AddCssClass("navbar-right");
             if (!String.IsNullOrEmpty(this.sCssClass)) writer.AddAttribute(HtmlTextWriterAttribute.Class, this.sCssClass);
 
             base.Render(writer);

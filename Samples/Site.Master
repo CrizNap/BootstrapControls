@@ -14,7 +14,7 @@
 </head>
 <body>
     <form id="form2" runat="server">
-        <twc:NavBar ID="NavBar1" runat="server" Title="freweb.net" Position="Top">
+        <twc:NavBar ID="NavBar1" runat="server" Title="freweb.net" Fluid="true">
             <Content>
                 <twc:DropdownMenu runat="server" RightToLeft="true">
                     <asp:ListItem Text="Home" Selected="True"></asp:ListItem>
@@ -23,7 +23,7 @@
             </Content>
         </twc:NavBar>
         <div class="container-fluid">            
-            <div class="row-fluid">
+            <div class="row">
                 <div class="span2" style="margin-top:20px;">
                     <twc:NavList ID="NavList1" runat="server">
                         <Items>

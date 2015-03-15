@@ -62,8 +62,9 @@ namespace Twitter.Web.Controls
         public NavBar()
         {
             this.Position = Position.None;
-            this.Inverted = true;
+            this.Inverted = false;
             this.Fixed = false;
+            this.Fluid = false;
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace Twitter.Web.Controls
         ///   <c>true</c> if inverted; otherwise, <c>false</c>.
         /// </value>
         [Category("Appearance")]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool Inverted
         {
             get { return (bool)ViewState["Inverted"]; }
@@ -110,7 +111,7 @@ namespace Twitter.Web.Controls
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="NavBar" /> is fixed.
+        /// Gets or sets a value indicating whether the position of this <see cref="NavBar" /> is fixed.
         /// </summary>
         /// <value>
         ///   <c>true</c> if fixed; otherwise, <c>false</c>.
@@ -123,6 +124,19 @@ namespace Twitter.Web.Controls
             set { ViewState["Fixed"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the contents of this <see cref="NavBar" /> are fluid.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if fluid; otherwise, <c>false</c>.
+        /// </value>
+        [Category("Appearance")]
+        [DefaultValue(false)]
+        public bool Fluid
+        {
+            get { return (bool)ViewState["Fluid"]; }
+            set { ViewState["Fluid"] = value; }
+        }
 
         /// <summary>
         /// Gets or sets the title.
@@ -144,7 +158,7 @@ namespace Twitter.Web.Controls
         /// <param name="writer">A <see cref="T:System.Web.UI.HtmlTextWriter" /> that represents the output stream to render HTML content on the client.</param>
         public override void RenderBeginTag(HtmlTextWriter writer)
         {
-            writer.RenderBeginTag(HtmlTextWriterTag.Div);
+            writer.RenderBeginTag("nav");
         }
 
         /// <summary>
@@ -156,7 +170,7 @@ namespace Twitter.Web.Controls
             writer.RenderEndTag();
         }
 
-          /// <summary>
+        /// <summary>
         /// Renders the control to the specified HTML writer.
         /// </summary>
         /// <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that receives the control content.</param>
@@ -165,10 +179,7 @@ namespace Twitter.Web.Controls
             this.AddCssClass(this.CssClass);
             this.AddCssClass("navbar");
 
-            if (this.Inverted)
-            {
-                this.AddCssClass("navbar-inverse");
-            }            
+            this.AddCssClass(Inverted ? "navbar-inverse" : "navbar-default");
 
             switch (this.Position)
             {
@@ -176,17 +187,22 @@ namespace Twitter.Web.Controls
                     this.AddCssClass("navbar-" + (Fixed ? "fixed" : "static") + "-top");
                     break;
 
-                case Web.Controls.Position.Bottom:
-                    this.AddCssClass("navbar-" + (Fixed ? "fixed" : "static") + "-bottom");
+                case Web.Controls.Position.Bottom: // there is no navbar-static-bottom in the bootstrap css
+                    this.AddCssClass("navbar-fixed-bottom");
                     break;
 
                 default:
                     break;
             }
 
+            writer.AddAttribute("role", "navigation");
             writer.AddAttribute(HtmlTextWriterAttribute.Id, this.ClientID);
             writer.AddAttribute(HtmlTextWriterAttribute.Name, this.UniqueID);
-            if (!String.IsNullOrEmpty(this.sCssClass)) writer.AddAttribute(HtmlTextWriterAttribute.Class, this.sCssClass);
+            
+            if (!String.IsNullOrEmpty(this.sCssClass))
+            {
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, this.sCssClass);
+            }
 
             base.Render(writer);
         }
@@ -197,13 +213,21 @@ namespace Twitter.Web.Controls
         /// <param name="output">The output.</param>
         protected override void RenderContents(HtmlTextWriter output)
         {
-            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-inner");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, Fluid ? "continer-fluid" : "container");
             output.RenderBeginTag(HtmlTextWriterTag.Div);
-           
-            this.RenderTitle(output);
-            this.RenderChildren(output);
 
-            output.RenderEndTag(); // Close Div   
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-header");
+            output.RenderBeginTag(HtmlTextWriterTag.Div);
+            this.RenderTitle(output);
+            output.RenderEndTag(); // Close Div
+
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-collapse");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "collapse");
+            output.RenderBeginTag(HtmlTextWriterTag.Div);
+            this.RenderChildren(output);
+            output.RenderEndTag(); // Close Div
+
+            output.RenderEndTag();
         }
 
         /// <summary>
@@ -212,9 +236,9 @@ namespace Twitter.Web.Controls
         /// <param name="output">The output.</param>
         private void RenderTitle(HtmlTextWriter output)
         {
-            output.AddAttribute(HtmlTextWriterAttribute.Class, "brand");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-brand");
             output.AddAttribute(HtmlTextWriterAttribute.Href, "#");
-            output.RenderBeginTag(HtmlTextWriterTag.A);            
+            output.RenderBeginTag(HtmlTextWriterTag.A);
             output.Write(this.Title);
             output.RenderEndTag();
         }
