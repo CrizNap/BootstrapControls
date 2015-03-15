@@ -213,19 +213,37 @@ namespace Twitter.Web.Controls
         /// <param name="output">The output.</param>
         protected override void RenderContents(HtmlTextWriter output)
         {
-            output.AddAttribute(HtmlTextWriterAttribute.Class, Fluid ? "continer-fluid" : "container");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, Fluid ? "container-fluid" : "container");
             output.RenderBeginTag(HtmlTextWriterTag.Div);
 
             output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-header");
             output.RenderBeginTag(HtmlTextWriterTag.Div);
+            this.RenderCollapseButton(output);
             this.RenderTitle(output);
-            output.RenderEndTag(); // Close Div
+            output.RenderEndTag(); // Close Header Div
 
-            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-collapse");
-            output.AddAttribute(HtmlTextWriterAttribute.Class, "collapse");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-collapse collapse");
             output.RenderBeginTag(HtmlTextWriterTag.Div);
             this.RenderChildren(output);
-            output.RenderEndTag(); // Close Div
+            output.RenderEndTag(); // Close Collapse Div
+
+            output.RenderEndTag(); // Close Container Div
+        }
+
+        private void RenderCollapseButton(HtmlTextWriter output)
+        {
+            output.AddAttribute(HtmlTextWriterAttribute.Type, "button");
+            output.AddAttribute(HtmlTextWriterAttribute.Class, "navbar-toggle collapsed");
+
+            output.AddAttribute("data-toggle", "collapse");
+            output.AddAttribute("data-target", ".navbar-collapse");
+
+            output.RenderBeginTag(HtmlTextWriterTag.Button);
+
+            output.Write("<span class=\"sr-only\">Toggle navigation</span>");
+            output.Write("<span class=\"icon-bar\"></span>");
+            output.Write("<span class=\"icon-bar\"></span>");
+            output.Write("<span class=\"icon-bar\"></span>");
 
             output.RenderEndTag();
         }

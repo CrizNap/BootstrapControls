@@ -5,8 +5,6 @@
 <head id="Head1" runat="server">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="~/Content/js/jquery-1.11.2.min.js"></script>
-    <script src="~/content/js/bootstrap.min.js"></script>
      <!-- Bootstrap -->
     <link href="/content/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -14,16 +12,16 @@
 </head>
 <body>
     <form id="form2" runat="server">
-        <twc:NavBar ID="NavBar1" runat="server" Title="freweb.net" Fluid="true">
+        <twc:NavBar ID="NavBar1" runat="server" Title="freweb.net" Fluid="false" Position="Top">
             <Content>
                 <twc:DropdownMenu runat="server">
                     <asp:ListItem Text="Home" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Dashboard" Enabled="false"></asp:ListItem>
                 </twc:DropdownMenu>
-                <twc:Button runat="server" Text="Sign in"></twc:Button>
+                <twc:Button runat="server" Text="Sign in" CssClass="navbar-right"></twc:Button>
             </Content>
         </twc:NavBar>
-        <div class="container-fluid">            
+        <div class="container-fluid">
             <div class="row">
                 <div class="span2" style="margin-top:20px;">
                     <twc:NavList ID="NavList1" runat="server">
@@ -57,6 +55,8 @@
             </div>
         </div>
     </form>
+    <script src="/Content/js/jquery-1.11.2.min.js"></script>
+    <script src="/Content/js/bootstrap.min.js"></script>
 </body>
 </html>
 
