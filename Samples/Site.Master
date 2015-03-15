@@ -16,10 +16,11 @@
     <form id="form2" runat="server">
         <twc:NavBar ID="NavBar1" runat="server" Title="freweb.net" Fluid="true">
             <Content>
-                <twc:DropdownMenu runat="server" RightToLeft="true">
+                <twc:DropdownMenu runat="server">
                     <asp:ListItem Text="Home" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Dashboard" Enabled="false"></asp:ListItem>
                 </twc:DropdownMenu>
+                <twc:Button runat="server" Text="Sign in"></twc:Button>
             </Content>
         </twc:NavBar>
         <div class="container-fluid">            

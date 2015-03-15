@@ -146,6 +146,11 @@ namespace Twitter.Web.Controls
             this.AddCssClass("btn");
             this.AddCssClass(this.GetCssButtonType());
 
+            if (this.Parent.Parent != null && this.Parent.Parent.GetType() == typeof(NavBar))
+            {
+                this.AddCssClass("navbar-btn");
+            }
+
             if (this.Enabled == false)
             {
                 this.AddCssClass("disabled");
@@ -159,15 +164,15 @@ namespace Twitter.Web.Controls
             switch (this.ButtonSize)
             {
                 case ButtonSizes.Large:
-                    this.AddCssClass("btn-large");
+                    this.AddCssClass("btn-lg");
                     break;
 
                 case ButtonSizes.Small:
-                    this.AddCssClass("btn-small");
+                    this.AddCssClass("btn-sm");
                     break;
 
                 case ButtonSizes.Mini:
-                    this.AddCssClass("btn-mini");
+                    this.AddCssClass("btn-xs");
                     break;
 
                 default:
@@ -279,6 +284,7 @@ namespace Twitter.Web.Controls
                     break;
 
                 default:
+                    str = "btn-default";
                     break;
             }
 
