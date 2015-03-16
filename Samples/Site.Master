@@ -1,11 +1,12 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Adminer.Site" %>
+
 <%@ Register Assembly="Twitter.Web.Controls" Namespace="Twitter.Web.Controls" TagPrefix="twc" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link href="/content/css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -23,7 +24,16 @@
         </twc:NavBar>
         <div class="container-fluid">
             <div class="row">
-                <div class="span2" style="margin-top:20px;">
+                <div class="col-md-2" style="margin-top: 20px;">
+                    <twc:ListGroup ID="ListGroup1" runat="server" LinkedItem="true">
+                        <twc:ListGroupItem Text="Administração" Active="true" />
+                        <twc:ListGroupItem Text="Utilizadores" Enabled="false" />
+                        <twc:ListGroupItem Text="Grupos" Badge="18" />
+                        <twc:ListGroupItem Text="Parametros" ListGroupItemType="Success" />
+                        <twc:ListGroupItem Text="Categorias" ListGroupItemType="Info" />
+                        <twc:ListGroupItem Text="Artigos" ListGroupItemType="Warning" />
+                        <twc:ListGroupItem Text="Noticias" ListGroupItemType="Danger" />
+                    </twc:ListGroup>
                     <twc:NavList ID="NavList1" runat="server">
                         <Items>
                             <twc:NavListItem Header="true" Text="Administração" Icon="wrench" />
@@ -50,7 +60,7 @@
                 </div>
                 <div class="span10">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
-                    
+
                 </div>
             </div>
         </div>
@@ -61,6 +71,5 @@
 </html>
 
 
-   
 
-      
+

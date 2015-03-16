@@ -63,6 +63,9 @@
     <Compile Include="Controls\Hero.cs" />
     <Compile Include="Controls\HyperlinkColumn.cs" />
     <Compile Include="Controls\Image.cs" />
+    <Compile Include="Controls\ListGroup.cs" />
+    <Compile Include="Controls\ListGroupCollection.cs" />
+    <Compile Include="Controls\ListGroupItem.cs" />
     <Compile Include="Controls\ListItem.cs" />
     <Compile Include="Controls\ListItemCollection.cs" />
     <Compile Include="Controls\MediaObject.cs" />
